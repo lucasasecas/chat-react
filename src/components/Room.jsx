@@ -8,7 +8,7 @@ class Room extends React.Component {
             status: props.status,
             clickHandler: props.clickHandler,
             avatarUrl: props.avatarUrl,
-            id: props.userId
+            id: props.id
         };
         this.clickHandler = this.clickHandler.bind(this);
     }

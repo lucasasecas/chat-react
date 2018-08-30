@@ -10,18 +10,17 @@ class RoomsList extends React.Component {
             rooms: [],
             clickHandler: props.clickHandler
         };
-        console.log("hola");
+
         this.clickHandler = this.clickHandler.bind(this);
         this.roomService.getAll(rooms => {
             this.setState({rooms: rooms});
         });
     }
 
-    clickHandler(userId){
-        var handler = this.state.clickHandler;
-        this.state.users.forEach(user => {
-            if (user.userId == userId) {
-                handler(user);
+    clickHandler(roomId){
+        this.state.rooms.forEach(room => {
+            if (room.id == roomId) {
+                this.state.clickHandler(room);
                 return;
             }                
         });

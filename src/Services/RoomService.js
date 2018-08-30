@@ -14,4 +14,11 @@ export default class RoomService {
             callback(res.data);
         })
     }
+
+    getMessages(roomId, callback){
+        axios.get(this.config.baseUrl + '/' + this.config.resourceName + '/' + roomId + '/messages')
+        .then(res => {
+            callback(res.data);
+        });
+    }
 }
