@@ -9,13 +9,11 @@ class App extends React.Component{
         this.roomService = new RoomService();
         this.state = {
             messages: [],
-            currentChatRoom: {
-                title: "Vincent Porter",
-                avatarUrl: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg"
-            }
+            currentChatRoom: {}
         };
 
         this.changeRoom = this.changeRoom.bind(this);
+        this.addMessage = this.addMessage.bind(this);
     }
 
     changeRoom(room) {
@@ -27,6 +25,7 @@ class App extends React.Component{
         this.setState(prevstate => {
             return {
                 currentChatRoom: {
+                    id: room.id,
                     title: room.name,
                     avatarUrl: room.avatarUrl
                 }
@@ -34,11 +33,21 @@ class App extends React.Component{
         });
     }
 
+    addMessage(message) {
+        this.roomService.addMessage(this.state.currentChatRoom.id, message, message => {
+            this.setState(prev => {
+                var newMessagesList = prev.messages;
+                newMessagesList.push(message);
+                return {messages: newMessagesList}
+            });
+        });
+    }
+
     render() {
         return (
             <div className="container clearfix">
                 <RoomsContainer userClickHandler={this.changeRoom}/>
-                <ChatRoom messages={this.state.messages} chatConfig={this.state.currentChatRoom}/>
+                <ChatRoom handleSubmit={this.addMessage} messages={this.state.messages} chatConfig={this.state.currentChatRoom}/>
             </div>
         )
     }

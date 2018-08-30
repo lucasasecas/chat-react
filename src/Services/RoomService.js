@@ -21,4 +21,16 @@ export default class RoomService {
             callback(res.data);
         });
     }
+
+    addMessage(roomId, message, callback) {
+        axios.post(this.config.baseUrl + '/' + this.config.resourceName + '/' + roomId + '/messages',
+        { message: message }, {
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(res => {
+            callback(res.data);
+        });
+    }
 }

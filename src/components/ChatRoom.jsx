@@ -7,13 +7,13 @@ class ChatRoom extends React.Component{
     constructor(props) {
         super(props);
     }
-    
+
     render() {
         return (
             <div className="chat">
-                <ChatHeader title={this.props.chatConfig.title} avatar={this.props.chatConfig.avatarUrl}/>
+                <ChatHeader title={this.props.chatConfig.title} avatar={this.props.chatConfig.avatarUrl} countMessages={this.props.messages.length}/>
                 <ChatList messages={this.props.messages}/>
-                <ChatForm  />
+                <ChatForm  handleSubmit={this.props.handleSubmit}/>
             </div>);
     }
 }
