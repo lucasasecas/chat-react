@@ -3,19 +3,11 @@ import ChatList from './ChatList.jsx';
 import ChatForm from './ChatForm.jsx';
 import ChatHeader from './ChatHeader.jsx';
 
-class ChatRoom extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="chat">
-                <ChatHeader title={this.props.chatConfig.title} avatar={this.props.chatConfig.avatarUrl} countMessages={this.props.messages.length}/>
-                <ChatList user={this.props.user} messages={this.props.messages}/>
-                <ChatForm  handleSubmit={this.props.handleSubmit}/>
-            </div>);
-    }
-}
+const ChatRoom = (props) => (
+        <div className="chat">
+            <ChatHeader title={props.chatConfig.title} avatar={props.chatConfig.avatarUrl} countMessages={props.messages.length}/>
+            <ChatList messages={props.messages}/>
+            <ChatForm  handleSubmit={props.handleSubmit}/>
+        </div>);
 
 export default ChatRoom;

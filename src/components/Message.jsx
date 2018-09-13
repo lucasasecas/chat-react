@@ -1,7 +1,5 @@
 import React from 'react';
 
-let daysOfTheWeek = ['sunday', ]
-
 function parseDate(milliseconds) {
     var date = new Date(milliseconds);
     
