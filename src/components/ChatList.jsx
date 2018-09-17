@@ -5,7 +5,7 @@ const ChatList = (props) => (
     <div className="chat-history">
         <ul>
             {
-                props.messages.map(message => <Message {...message} isMe={ message.authorName == 'Olia' } />) 
+                props.messages.map(message => <Message {...message} isMe={ message.authorName == props.user.userName } />) 
             }
             <li ></li>
             <li tabIndex={1}> 

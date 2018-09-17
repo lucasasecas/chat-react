@@ -33,6 +33,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "@aspnet/signalr": "^1.1.0-preview2-35157",
     "axios": "^0.18.0",
     "react": "*",
     "react-dom": "^16.4.2"

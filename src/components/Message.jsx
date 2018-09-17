@@ -13,7 +13,7 @@ const Message = (props) => (
     <li className="clearfix">
         <div className="message-data align-right">
             <span className="message-data-time" >{parseDate(props.date)}</span> &nbsp; &nbsp;
-            <span className="message-data-name" >{props.AuthorName}</span> <i className="fa fa-circle me"></i>
+            <span className="message-data-name" >{props.authorName}</span> <i className="fa fa-circle me"></i>
         </div>
         <div className="message other-message float-right">
             {props.message}
@@ -21,7 +21,7 @@ const Message = (props) => (
     </li> : 
     <li>
         <div className="message-data">
-            <span className="message-data-name"><i className="fa fa-circle online"></i> {props.userName}</span>
+            <span className="message-data-name"><i className="fa fa-circle online"></i> {props.authorName}</span>
             <span className="message-data-time">{parseDate(props.date)}</span>
         </div>
         <div className="message my-message">
