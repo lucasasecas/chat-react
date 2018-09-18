@@ -15,6 +15,7 @@ class App extends React.Component{
         };
 
         this.changeRoom = this.changeRoom.bind(this);
+        this.searchRoom = this.searchRoom.bind(this);
         this.addMessage = this.addMessage.bind(this);
         this.publishMessage = this.publishMessage.bind(this);
         this.connectUser = this.connectUser.bind(this);
@@ -24,9 +25,8 @@ class App extends React.Component{
         });
     }
 
-    changeRoom(room) {
-        
-        this.chatSocketService.joinToRoom(room.id, savedRoom =>{
+    changeRoom(roomId) {
+        this.chatSocketService.joinToRoom(roomId, savedRoom =>{
             this.setState(prevstate => {
                 return {
                     currentChatRoom: {
@@ -58,10 +58,16 @@ class App extends React.Component{
         }
     }
 
+    searchRoom(event) {
+        this.roomService.getAll(rooms => {
+            this.setState({rooms: rooms});
+        });
+    }
+
     render() {
         return (
             <div className="container clearfix">
-                <RoomsContainer rooms={this.state.rooms} userClickHandler={this.changeRoom}/>
+                <RoomsContainer rooms={this.state.rooms} changeRoom={this.changeRoom}/>
                 <ChatRoom handleSubmit={this.publishMessage} messages={this.state.messages} user={this.state.user} chatConfig={this.state.currentChatRoom}/>
             </div>
         )

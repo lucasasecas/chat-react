@@ -8,8 +8,11 @@ export default class RoomService {
         };
     }
 
-    getAll(callback) {
-        axios.get(this.config.baseUrl + '/' + this.config.resourceName)
+
+
+    getAll(params, callback) {
+        let query = params.name ? '?name=' + params.name : ''
+        axios.get(this.config.baseUrl + '/' + this.config.resourceName + query)
         .then(res => {
             callback(res.data);
         })

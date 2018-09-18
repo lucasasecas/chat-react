@@ -6,7 +6,6 @@ class Room extends React.Component {
         this.state = {
             name: props.name,
             status: props.status,
-            clickHandler: props.clickHandler,
             avatarUrl: props.avatarUrl,
             id: props.id
         };
@@ -14,7 +13,7 @@ class Room extends React.Component {
     }
 
     clickHandler(event) {
-        this.state.clickHandler(this.state.id);
+        this.props.clickHandler(this.state.id);
     }
 
     render(){
