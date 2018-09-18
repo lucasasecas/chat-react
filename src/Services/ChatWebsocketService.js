@@ -15,11 +15,20 @@ class ChatWebsocketService {
         this._connection.on("connectUser", props.connectUser);
     }
 
-    sendMessage(message) {
-        console.log("ChatWebsocketService");
-        this._connection.invoke("SendMessage", message)
+    sendMessage(message, roomId) {
+        this._connection.invoke("SendMessage", message, roomId)
         .catch(() =>{
             console.log("couldn't send message");
+        });
+    }
+
+    joinToRoom(roomId, success) {
+        this._connection.invoke("JoinToRoom", roomId)
+        .then(res => {
+            success(res);
+        })
+        .catch(() => {
+            console.log("couldn't join to the room");
         });
     }
 }
