@@ -113,11 +113,12 @@ body {
       color: $gray;
     }
     
-    .fa-star {
+    .fa-close {
       float: right;
-      color: #D8DADF;
+      color: #4f5052;
       font-size: 20px;
       margin-top: 12px;
+      cursor: pointer;
     }
   }
   

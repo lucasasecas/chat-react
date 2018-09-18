@@ -8,7 +8,7 @@ const ChatHeader = (props) => (
         <div className="chat-with">Chat with {props.title}</div>
         <div className="chat-num-messages">already {props.countMessages} messages</div>
     </div>
-<i className="fa fa-star"></i>
+<i className="fa fa-close" onClick={props.closeRoomHandler}></i>
 </div>);
 
 export default ChatHeader;

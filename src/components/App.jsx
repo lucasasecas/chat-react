@@ -11,11 +11,11 @@ class App extends React.Component{
         this.state = {
             messages: [],
             rooms: [],
-            currentChatRoom: {}
+            currentChatRoom: null
         };
 
         this.changeRoom = this.changeRoom.bind(this);
-        this.searchRoom = this.searchRoom.bind(this);
+        this.closeRoom = this.closeRoom.bind(this);
         this.addMessage = this.addMessage.bind(this);
         this.publishMessage = this.publishMessage.bind(this);
         this.connectUser = this.connectUser.bind(this);
@@ -26,18 +26,23 @@ class App extends React.Component{
     }
 
     changeRoom(roomId) {
-        this.chatSocketService.joinToRoom(roomId, savedRoom =>{
-            this.setState(prevstate => {
-                return {
-                    currentChatRoom: {
-                        id: savedRoom.id,
-                        title: savedRoom.name,
-                        avatarUrl: savedRoom.avatarUrl
-                    },
-                    messages: savedRoom.messages
-                };
+
+            this.chatSocketService.joinToRoom(roomId, savedRoom =>{
+                this.setState(prevstate => {
+                    return {
+                        currentChatRoom: {
+                            id: savedRoom.id,
+                            title: savedRoom.name,
+                            avatarUrl: savedRoom.avatarUrl
+                        },
+                        messages: savedRoom.messages
+                    };
+                });
             });
-        });
+    }
+
+    closeRoom(event) {
+        this.setState({currentChatRoom: null});
     }
 
     connectUser(user) {
@@ -58,17 +63,11 @@ class App extends React.Component{
         }
     }
 
-    searchRoom(event) {
-        this.roomService.getAll(rooms => {
-            this.setState({rooms: rooms});
-        });
-    }
-
     render() {
         return (
             <div className="container clearfix">
-                <RoomsContainer rooms={this.state.rooms} changeRoom={this.changeRoom}/>
-                <ChatRoom handleSubmit={this.publishMessage} messages={this.state.messages} user={this.state.user} chatConfig={this.state.currentChatRoom}/>
+                <RoomsContainer  rooms={this.state.rooms} changeRoom={this.changeRoom}/>
+                <ChatRoom closeRoomHandler={this.closeRoom} handleSubmit={this.publishMessage} messages={this.state.messages} user={this.state.user} chatConfig={this.state.currentChatRoom}/>
             </div>
         )
     }
